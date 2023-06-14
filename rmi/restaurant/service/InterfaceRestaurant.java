@@ -3,7 +3,7 @@
    import java.rmi.server.ServerNotActiveException;
 
    // Définition de l'interface du service distant
-   public interface ServiceDistant extends Remote{
+   public interface InterfaceRestaurant extends Remote{
       // Définition de la méthode distante qui throw RemoteException et ServerNotActiveException
-      public void methodeDistante() throws RemoteException, ServerNotActiveException;
+      public String recupererRestaurants() throws RemoteException, ServerNotActiveException;
    }
