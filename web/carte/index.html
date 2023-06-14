@@ -13,9 +13,41 @@
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
      <link rel="stylesheet" href="../css/carte.css">
-    <title>Projet SAE - Carte</title>
+    <title>Projet SAE - CARTE</title>
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="../" class="w3-bar-item w3-button w3-padding-large"><i class="fa fa-home fa-lg"></i></a>
+            <a href="" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-grey">CARTE</a>
+            <a href="../reservation" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESERVATION</a>
+            <a href="../about" class="w3-bar-item w3-button w3-padding-large w3-hide-small">A PROPOS</a>
+        </div>
+    </div>
+
+    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+        <a href="" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CARTE</a>
+        <a href="../reservation/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">RESERVATION</a>
+        <a href="../about/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">A PROPOS</a>
+    </div>
+    <div>
+        <i class="fa fa-map-marker" style="width:30px"></i>
+    </div>
+    <script>
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else { 
+            x.className = x.className.replace(" w3-show", "");
+        }
+        }
+    </script>
+
     <div class="w3-white" id="content">
         <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
           <h2 class="w3-wide w3-center">CARTE</h2>
@@ -25,7 +57,7 @@
                 <div class="w3-center" id="map"></div>
             </div>
             <div id="container-filtre" class="w3-col m4 l3">
-                <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+                <div class="w3-container w3-content w3-padding-32" style="max-width:800px">
                     <h2 class="w3-wide w3-center">FILTRES</h2>
                     <div class="w3-padding-32 w3-center">
                         <div class="w3-padding-16">
