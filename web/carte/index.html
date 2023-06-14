@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE - Carte</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+     <link rel="stylesheet" href="../css/carte.css">
+    <title>Projet SAE - Carte</title>
 </head>
 <body>
-    carte
+    <div class="w3-white" id="content">
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+          <h2 class="w3-wide w3-center">CARTE</h2>
+        </div>
+        <div id="content-carte-filtre" class="w3-row">
+            <div id="container-carte" class="w3-col m8 l9">
+                <div class="w3-center" id="map"></div>
+            </div>
+            <div id="container-filtre" class="w3-col m4 l3">
+                <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+                    <h2 class="w3-wide w3-center">FILTRES</h2>
+                    <div class="w3-padding-32 w3-center">
+                        <div class="w3-padding-16">
+                            <label class="container">Restaurants
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="w3-padding-16">
+                            <label class="container">Stations vélos
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
 </body>
+<script type="text/javascript" src="../js/carte.js"></script>
 </html>
