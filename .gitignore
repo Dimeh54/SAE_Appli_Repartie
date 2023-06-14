@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# fichier de config de la bd
+rmi/restaurant/db.config.ini
+
 # Log file
 *.log
 
