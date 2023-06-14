@@ -6,4 +6,6 @@
    public interface InterfaceRestaurant extends Remote{
       // Définition de la méthode distante qui throw RemoteException et ServerNotActiveException
       public String recupererRestaurants() throws RemoteException, ServerNotActiveException;
+
+      public void enregistrerReservation() throws RemoteException, ServerNotActiveException;
    }

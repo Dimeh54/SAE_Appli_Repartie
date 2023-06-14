@@ -15,7 +15,7 @@ public class LancerService {
                 port = Integer.parseInt(args[0]);
             }
             // On crée une instance du service
-            Service serv = new Service();
+            ServiceRestaurant serv = new ServiceRestaurant();
             // On exporte l'objet
             InterfaceRestaurant rd = (InterfaceRestaurant) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire local rmiregistry 
