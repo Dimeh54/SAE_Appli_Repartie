@@ -1,6 +1,8 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.RemoteException;
+import java.rmi.UnknownHostException;
+import java.rmi.ConnectException;
 import java.rmi.NotBoundException;
 import java.rmi.server.ServerNotActiveException;
 
@@ -15,7 +17,7 @@ public class Appel {
             // On récupère le registre distant
             Registry reg = LocateRegistry.getRegistry(adresse, port);
             // On récupère le service distant
-            ServiceDistant sd = (ServiceDistant) reg.lookup("NomService");
+            InterfaceRestaurant sd = (InterfaceRestaurant) reg.lookup("NomService");
             // On appelle la méthode distante
             sd.methodeDistante();
         // On gère les exceptions

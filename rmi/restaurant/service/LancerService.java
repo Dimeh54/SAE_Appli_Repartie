@@ -1,5 +1,7 @@
+import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.AccessException;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
@@ -15,7 +17,7 @@ public class LancerService {
             // On crée une instance du service
             Service serv = new Service();
             // On exporte l'objet
-            ServiceDistant rd = (ServiceDistant) UnicastRemoteObject.exportObject(serv, 0);
+            InterfaceRestaurant rd = (InterfaceRestaurant) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire local rmiregistry 
             Registry reg = LocateRegistry.getRegistry(port);
             // On enregistre le service dans l'annuaire
