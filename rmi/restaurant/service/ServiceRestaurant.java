@@ -14,7 +14,9 @@ public class ServiceRestaurant implements InterfaceRestaurant {
             res.append("{\"id\":"+rs.getInt("id_restaurant")+",");
             res.append("\"nom\":\""+rs.getString("nom")+"\",");
             res.append("\"adresse\":\""+rs.getString("adresse")+"\",");
-            res.append("\"coordonnees_gps\":\""+rs.getString("coordonnes_gps")+"\"},");
+            res.append("\"coordonnees_gps\":");
+            res.append("{\"latitude\":"+rs.getDouble("latitude")+",");
+            res.append("\"longitude\":"+rs.getDouble("longitude")+"}},");
         }
         res.append("]");
         return res.toString();
