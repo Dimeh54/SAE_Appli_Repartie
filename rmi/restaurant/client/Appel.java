@@ -17,9 +17,13 @@ public class Appel {
             // On récupère le registre distant
             Registry reg = LocateRegistry.getRegistry(adresse, port);
             // On récupère le service distant
-            InterfaceRestaurant sd = (InterfaceRestaurant) reg.lookup("NomService");
+            InterfaceRestaurant ir = (InterfaceRestaurant) reg.lookup("serviceRestaurant");
+            
             // On appelle la méthode distante
-            sd.methodeDistante();
+            String restaurantsJson = ir.recupererRestaurants();
+            System.out.println(restaurantsJson);
+
+            
         // On gère les exceptions
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Une IP ou un hôte doit être spécifié en argument");
