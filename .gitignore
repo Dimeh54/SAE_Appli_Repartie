@@ -2,7 +2,7 @@
 *.class
 
 # fichier de config de la bd
-rmi/restaurant/db.config.ini
+rmi/restaurant/db_config.java
 
 # Log file
 *.log
