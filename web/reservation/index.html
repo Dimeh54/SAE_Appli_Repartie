@@ -6,48 +6,178 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/reservation.css">
+
     <title>SAE - Reservation</title>
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-black w3-card">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="../" class="w3-bar-item w3-button w3-padding-large"><i class="fa fa-home fa-lg"></i></a>
-            <a href="../carte/" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CARTE</a>
-            <a href="" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESERVATION</a>
-            <a href="../about/" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-grey">A PROPOS</a>
-        </div>
+<!-- Navbar -->
+<div id="header" class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                class="fa fa-bars"></i></a>
+        <a href="../" class="w3-bar-item w3-button w3-padding-large"><i class="fa fa-home fa-lg"></i></a>
+        <a href="../carte/" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CARTE</a>
+        <a href="" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-grey">RESERVATION</a>
+        <a href="../about/" class="w3-bar-item w3-button w3-padding-large w3-hide-small">A PROPOS</a>
     </div>
+</div>
 
-    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-        <a href="../carte/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CARTE</a>
-        <a href="" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">RESERVATION</a>
-        <a href="../about/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">A PROPOS</a>
-    </div>
-    <div>
-        <i class="fa fa-map-marker" style="width:30px"></i>
-    </div>
-    <script>
-        // Used to toggle the menu on small screens when clicking on the menu button
-        function myFunction() {
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="../carte/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CARTE</a>
+    <a href="" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">RESERVATION</a>
+    <a href="../about/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">A PROPOS</a>
+</div>
+<div>
+    <i class="fa fa-map-marker" style="width:30px"></i>
+</div>
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
         var x = document.getElementById("navDemo");
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
-        } else { 
+        } else {
             x.className = x.className.replace(" w3-show", "");
         }
-        }
-    </script>
+    }
+</script>
 
-    <div id="content" style="min-height: 100vh;">
-        Reservation
-    </div>
-    
-    
-    <footer class="w3-bar w3-black w3-center">
-        <p>&copy; Programmation répartie, application réalisé par Mehdi Allali, Rémi Perrier, Alex Collin, Alexandre Noël, Solène Flore</p>
-    </footer>
+<div class="FormBox">
+    <form action="/">
+        <div class="banner w3-wide">
+            <h1>Formulaire de réservations</h1>
+        </div>
+        <div class="item">
+            <p>Identité</p>
+            <div class="name-item">
+                <input type="text" name="name" placeholder="Prénom"/>
+                <input type="text" name="name" placeholder="Nom"/>
+            </div>
+        </div>
+        <div class="item">
+            <p>Numéro de téléphone</p>
+            <input type="tel" name="phone"/>
+        </div>
+        <div class="item">
+            <p>Number of Passengers</p>
+            <input type="text" name="name"/>
+        </div>
+        <div class="item">
+            <p>Contact Address</p>
+            <input type="text" name="name" placeholder="Street address"/>
+            <input type="text" name="name" placeholder="Street address line 2"/>
+            <div class="city-item">
+                <input type="text" name="name" placeholder="City"/>
+                <input type="text" name="name" placeholder="Region"/>
+                <input type="text" name="name" placeholder="Postal / Zip code"/>
+                <select>
+                    <option value="">Country</option>
+                    <option value="1">Russia</option>
+                    <option value="2">Germany</option>
+                    <option value="3">France</option>
+                    <option value="4">Armenia</option>
+                    <option value="5">USA</option>
+                </select>
+            </div>
+        </div>
+        <div class="question">
+            <p>Vehicle</p>
+            <div class="question-answer">
+                <div>
+                    <input type="radio" value="none" id="radio_1" name="vehicle"/>
+                    <label for="radio_1" class="radio"><span>Limousine (8-12 person)</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="none" id="radio_2" name="vehicle"/>
+                    <label for="radio_2" class="radio"><span>SUV (6-7 person)</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="none" id="radio_3" name="vehicle"/>
+                    <label for="radio_3" class="radio"><span>Van (12-15 person)</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="none" id="radio_4" name="vehicle"/>
+                    <label for="radio_4" class="radio"><span>Bus (50+ person)</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="none" id="radio_5" name="vehicle"/>
+                    <label for="radio_5" class="radio other"><span>other:</span></label>
+                    <input class="other" type="text" name="name"/>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <p>Pick Up Date</p>
+            <input type="date" name="bdate"/>
+            <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+            <p>Pick Up Time</p>
+            <input type="time" name="name"/>
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="item">
+            <p>If pick up from the airport, please enter airport name</p>
+            <input type="text" name="name"/>
+        </div>
+        <div class="item">
+            <p>Flight Number</p>
+            <input type="text" name="name"/>
+        </div>
+        <div class="item">
+            <p>Pick Up Point</p>
+            <input type="text" name="name" placeholder="Street address"/>
+            <input type="text" name="name" placeholder="Street address line 2"/>
+            <div class="city-item">
+                <input type="text" name="name" placeholder="City"/>
+                <input type="text" name="name" placeholder="Region"/>
+                <input type="text" name="name" placeholder="Postal / Zip code"/>
+                <select>
+                    <option value="">Country</option>
+                    <option value="1">Russia</option>
+                    <option value="2">Germany</option>
+                    <option value="3">France</option>
+                    <option value="4">Armenia</option>
+                    <option value="5">USA</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <p>Destination</p>
+            <input type="text" name="name" placeholder="Street address"/>
+            <input type="text" name="name" placeholder="Street address line 2"/>
+            <div class="city-item">
+                <input type="text" name="name" placeholder="City"/>
+                <input type="text" name="name" placeholder="Region"/>
+                <input type="text" name="name" placeholder="Postal / Zip code"/>
+                <select>
+                    <option value="">Country</option>
+                    <option value="1">Russia</option>
+                    <option value="2">Germany</option>
+                    <option value="3">France</option>
+                    <option value="4">Armenia</option>
+                    <option value="5">USA</option>
+                </select>
+            </div>
+        </div>
+        <div class="item">
+            <p>Notes</p>
+            <textarea rows="3"></textarea>
+        </div>
+        <div class="btn-block">
+            <button type="submit" href="/">SEND</button>
+        </div>
+    </form>
+</div>
+<footer class="w3-bar w3-black w3-center">
+    <p>&copy; Programmation répartie, application réalisé par Mehdi Allali, Rémi Perrier, Alex Collin, Alexandre
+        Noël, Solène Flore</p>
+</footer>
 </body>
 </html>
