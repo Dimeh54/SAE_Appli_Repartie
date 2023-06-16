@@ -1,5 +1,6 @@
 package client;
 
+import service.InterfaceRestaurant;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.RemoteException;

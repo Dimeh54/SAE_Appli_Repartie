@@ -1,4 +1,4 @@
-INSERT INTO S402_restaurants ("nom", "adresse", "latitude", "longitude")
+INSERT INTO S402_restaurants (nom, adresse, latitude, longitude)
 VALUES
     ('Les Ptits Oignons', '48 Rue Jeanne dArc, 54000 Nancy', 48.686471008084, 6.171271012244404),
     ('Mama Betty', '401 Avenue de Boufflers 54520 Laxou', 48.69346700547891, 6.13732103544163),
