@@ -1,5 +1,6 @@
 import velib from "./module/velib.js";
 import traffic from "./module/traffic.js";
+import restaurant from "./module/restaurant.js";
 
 var map;
 
@@ -9,26 +10,24 @@ async function init() {
     // On crée la map
     creerMap();
 
-    // On crée le tableau des stations vélib
+    // On crée le tableau des stations vélib et on les affiche sur la carte
     let stations_velib = await velib.creerTabVelib();
-    // On affiche les markers des stations vélib sur la carte
     velib.displayOnMap(map, stations_velib);
 
+    // On crée le tableau des stations de traffic et on les affiche sur la carte
     let traffic_tab = await traffic.creerTabTraffic();
     traffic.displayOnMap(map, traffic_tab);
+
+    // On crée le tableau des restaurants et on les affiche sur la carte
+    let tab_restaurant = await restaurant.creerTabRestaurant();
+    restaurant.displayOnMap(map, tab_restaurant);
 
     // On ajoute les évènements liés aux checkbox
     ajoutEvent();
     
-    testMarkerRestaurant();
+    //testMarkerRestaurant();
 }
 
-function testMarkerRestaurant() {
-    var marker = L.marker([48.65434898630919,6.105573995362762]).addTo(map);
-
-        // Popup du marker
-        marker.bindPopup("<button class='w3-button w3-blue' onclick='openCard()'>Réservation</button>");
-}
 
 /**
  * Créer la map et l'affiche dans la div "map"
@@ -53,6 +52,11 @@ function ajoutEvent() {
     let checkbox_traffic = document.getElementById("checkbox-traffic");
     checkbox_traffic.addEventListener("change", function (e) {
         toggleMarker(e.target, traffic.markers_traffic);
+    });
+
+    let checkbox_restaurant = document.getElementById("checkbox-restaurant");
+    checkbox_restaurant.addEventListener("change", function (e) {
+        toggleMarker(e.target, restaurant.markers_restaurant);
     });
 }
 

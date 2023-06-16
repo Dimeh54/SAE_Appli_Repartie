@@ -42,10 +42,16 @@
 </script>
 
 <div class="w3-center" style="min-height: 100vh;">
-    <h1 class="w3-margin w3-padding-large w3-wide">Bienvenue Sur notre application répartie d'information sur Nancy</h1>
-    <a href="https://www.google.com/search?q=nancy" target="_blank">
-        <img src="./Ressources/Nancy.jpg" alt="Nancy" class="w3-hover-grayscale w3-round">
-    </a>
+    <h1 class="w3-margin w3-padding-64 w3-wide">Bienvenue Sur notre application répartie d'information sur Nancy</h1>
+    <div style="display: flex; justify-content: center;">
+        <a href="https://www.google.com/search?q=nancy" target="_blank">
+            <img class="w3-padding-large" src="./Ressources/Nancy.jpg" alt="Nancy" class="w3-hover-grayscale w3-round">
+        </a>
+        <div class="w3-padding-large">
+                <h3>Prévision météo</h3>
+                <iframe id="widget_autocomplete_preview"  width="300" frameborder="0" src="https://meteofrance.com/widget/prevision/543950"> </iframe>
+        </div>
+    </div>
 </div>
 
 <footer class="w3-bar w3-black w3-center">

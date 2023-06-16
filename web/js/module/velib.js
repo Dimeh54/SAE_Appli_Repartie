@@ -23,9 +23,9 @@ function displayOnMap(map, tab_velib) {
 
         // Popup du marker
         marker.bindPopup("<b>"+tab_velib[i].name
-            +"</b><br>"+tab_velib[i].address
-            +"<br>Vélos dispo : "+tab_velib[i].num_bikes_available
-            +"<br>Places parking dispo : "+tab_velib[i].num_docks_available);
+            +"</b><br><br>"+tab_velib[i].address
+            +"<br>Vélos disponibles : "+tab_velib[i].num_bikes_available
+            +"<br>Places parking disponibles : "+tab_velib[i].num_docks_available);
 
         // On récupère les markers dans un tableau pour pouvoir les utiliser pour les évènements (checkbox)
         markers_velib.push(marker);

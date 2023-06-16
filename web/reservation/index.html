@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/reservation.css">
-
-    <title>SAE - Reservation</title>
+    <script type="module" src="../js/formulaire.js" defer></script>
+    <title>Projet SAE - Reservation</title>
 </head>
 <body>
 <!-- Navbar -->
@@ -48,19 +48,14 @@
 <div class="FormBox">
     <form action="/">
         <div class="banner w3-wide">
-            <h1>Formulaire de réservations</h1>
+            <h1>Formulaire de réservation</h1>
         </div>
         <div class="item">
             <h2>Réservation</h2>
             <p>Restaurant</p>
-            <select name="restaurant" required>
-                <option value=""></option>
-                <option value="1">Russia</option>
-                <option value="2">Germany</option>
-                <option value="3">France</option>
-                <option value="4">Armenia</option>
-                <option value="5">USA</option>
-            </select>
+            <input type="text" id="searchInput" list="restaurantList" placeholder="Choisissez un restaurant" style="min-width: 50%;">
+            <datalist id="restaurantList">
+            </datalist>
         </div>
         <div>
             <p>Date</p>

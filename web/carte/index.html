@@ -63,7 +63,7 @@
                     <div class="w3-padding-32 w3-center">
                         <div class="w3-padding-16">
                             <label class="container">Restaurants
-                                <input type="checkbox" checked="checked" id="checkbox-resto">
+                                <input type="checkbox" checked="checked" id="checkbox-restaurant">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -93,19 +93,12 @@
                 <div class="FormBox">
                     <form action="/">
                         <div class="banner w3-wide">
-                            <h1>Formulaire de réservations</h1>
+                            <h1>Formulaire de réservation</h1>
                         </div>
                         <div class="item">
                             <h2>Réservation</h2>
                             <p>Restaurant</p>
-                            <select name="restaurant" required>
-                                <option value=""></option>
-                                <option value="1">Russia</option>
-                                <option value="2">Germany</option>
-                                <option value="3">France</option>
-                                <option value="4">Armenia</option>
-                                <option value="5">USA</option>
-                            </select>
+                            <input type="text" id="searchInput" style="min-width: 50%;" readonly>
                         </div>
                         <div>
                             <p>Date</p>
@@ -136,8 +129,10 @@
     </div>
 
     <script>
-        function openCard() {
+        function openCard(resto) {
             var card = document.getElementById("cardContainer");
+            let input_resto = document.getElementById("searchInput");
+            input_resto.value = resto;
             card.style.display = "block";
         }
 

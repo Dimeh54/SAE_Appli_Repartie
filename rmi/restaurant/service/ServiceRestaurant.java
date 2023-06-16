@@ -38,8 +38,8 @@ public class ServiceRestaurant implements InterfaceRestaurant {
                 res.append("\t\t\t\"id\": "+rs.getInt("id_restaurant")+",\n");
                 res.append("\t\t\t\"nom\": \""+rs.getString("nom")+"\",\n");
                 res.append("\t\t\t\"adresse\": \""+rs.getString("adresse")+"\",\n");
-                res.append("\t\t\t\"latitude\": "+rs.getString("latitude")+",\n");
-                res.append("\t\t\t\"longitude\": "+rs.getString("longitude")+"\n");
+                res.append("\t\t\t\"latitude\": \""+rs.getString("latitude")+"\",\n");
+                res.append("\t\t\t\"longitude\": \""+rs.getString("longitude")+"\"\n");
                 res.append("\t\t},\n");
             }
             res.deleteCharAt(res.length()-2);

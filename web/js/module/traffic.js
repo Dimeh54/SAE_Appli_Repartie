@@ -26,7 +26,7 @@ function displayOnMap(map, tab_traffic) {
     // Créer une icône personnalisée
     var customIcon = L.icon({
         iconUrl: '../Ressources/marker-danger.png',
-        iconSize: [20, 30],
+        iconSize: [22, 32],
         iconAnchor: [20, 40],
         popupAnchor: [0, -40]
     });
@@ -47,8 +47,8 @@ function displayOnMap(map, tab_traffic) {
 
         // Popup du marker
         marker.bindPopup("<b>"+t.short_description
-            +"</b><br>"+t.location.street
-            +"<br>Date de fin prévu : "+formattedDate);
+            +"</b><p>"+t.location.street
+            +"</p><p>Date de fin prévu : "+formattedDate+"</p>");
 
         markers_traffic.push(marker);
     }

@@ -1,0 +1,81 @@
+{
+  "restaurants": [
+    {
+      "id": 1,
+      "nom": "Les Ptits Oignons",
+      "adresse": "48 Rue Jeanne d'Arc, 54000 Nancy",
+      "latitude": "48.686471008084",
+      "longitude": "6.171271012244404"
+    },
+    {
+      "id": 2,
+      "nom": "Mama Betty",
+      "adresse": "401 Avenue de Boufflers 54520 Laxou",
+      "latitude": "48.69346700547891",
+      "longitude": "6.13732103544163"
+    },
+    {
+      "id": 3,
+      "nom": "Le Singe Hardi",
+      "adresse": "36 Avenue de Maron 54600 Villers-les-Nancy",
+      "latitude": "48.66434898630919",
+      "longitude": "6.135573995362762"
+    },
+    {
+      "id": 4,
+      "nom": "Hippone restaurant",
+      "adresse": "46 Avenue de la Malgrange 54140 Jarville-la-Malgrange",
+      "latitude": "48.66741802015687",
+      "longitude": "6.198453021328163"
+    },
+    {
+      "id": 5,
+      "nom": "BONIDE",
+      "adresse": "135 Rue Sergent Blandan 54000 Nancy",
+      "latitude": "48.674045004264485",
+      "longitude": "6.171257014466107"
+    },
+    {
+      "id": 6,
+      "nom": "Lessentiel",
+      "adresse": "27 Avenue de la Libération 54520 Laxou",
+      "latitude": "48.67781099336119",
+      "longitude": "6.158349973223324"
+    },
+    {
+      "id": 7,
+      "nom": "Restaurant Pidélice",
+      "adresse": "25 Rue Raymond Poincaré 54000 Nancy",
+      "latitude": "48.69007401107348",
+      "longitude": "6.172209031028757"
+    },
+    {
+      "id": 8,
+      "nom": "Al-sindibad Restaurant",
+      "adresse": "27 Rue des Soeurs Macarons 54000 Nancy",
+      "latitude": "48.68863001870395",
+      "longitude": "6.18484298986607"
+    },
+    {
+      "id": 9,
+      "nom": "Brasserie Dlena",
+      "adresse": "9 Rue Aristide Briand, 54500 Vandeuvre-les-Nancy",
+      "latitude": "48.671029991782746",
+      "longitude": "6.1796769714819675"
+    },
+    {
+      "id": 10,
+      "nom": "Les Fourneaux de Marius",
+      "adresse": "101 Av. Jean Jaurès, 54500 Vandéuvre-les-Nancy",
+      "latitude": "48.66169103709577",
+      "longitude": "6.161157518640309"
+    },
+    {
+      "id": 11,
+      "nom": "Le Local",
+      "adresse": "59 Rue de la Commanderie, 54000 Nancy",
+      "latitude": "48.68596000535692",
+      "longitude": "6.1689250013646415"
+    }
+  ]
+}
