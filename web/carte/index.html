@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
      <link rel="stylesheet" href="../css/carte.css">
+     <link rel="stylesheet" href="../css/reservation.css">
     <title>Projet SAE - CARTE</title>
 </head>
 <body>
@@ -84,13 +85,71 @@
         </div>
     </div>
 
-    <div class="w3-basebar w3-black w3-center">
-        <p> </p>
+    <!-- Formulaire "pop-up" pour réservation -->
+    <div id="cardContainer" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width: 100em">
+            <div class="w3-container">
+                <span onclick="closeCard()" class="w3-button w3-display-topright">&times;</span>
+                <div class="FormBox">
+                    <form action="/">
+                        <div class="banner w3-wide">
+                            <h1>Formulaire de réservations</h1>
+                        </div>
+                        <div class="item">
+                            <h2>Réservation</h2>
+                            <p>Restaurant</p>
+                            <select name="restaurant" required>
+                                <option value=""></option>
+                                <option value="1">Russia</option>
+                                <option value="2">Germany</option>
+                                <option value="3">France</option>
+                                <option value="4">Armenia</option>
+                                <option value="5">USA</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Date</p>
+                            <div class="name-item">
+                                <input type="date" name="date" required/>
+                                <input type="time" name="heure" required/>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p>Nombre de personnes</p>
+                            <input type="number" name="personnes" min="1" max="100" required/>
+                        </div>
+                        <div class="item">
+                            <h2>Informations de réservation</h2>
+                            <div class="name-item">
+                                <input type="text" name="prenom" placeholder="Prénom" required/>
+                                <input type="text" name="nom" placeholder="Nom" required/>
+                            </div>
+                            <input type="tel" name="phone" placeholder="Téléphone" required/>
+                        </div>
+                        <div class="btn-block">
+                            <button type="submit" href="/">SEND</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCard() {
+            var card = document.getElementById("cardContainer");
+            card.style.display = "block";
+        }
+
+        function closeCard() {
+            var card = document.getElementById("cardContainer");
+            card.style.display = "none";
+        }
+    </script>
 
     <footer class="w3-bar w3-black w3-center">
         <p>&copy; Programmation répartie, application réalisé par Mehdi Allali, Rémi Perrier, Alex Collin, Alexandre Noël, Solène Flore</p>
     </footer>
-    </div>
 </body>
 <script type="module" src="../js/carte.js"></script>
 </html>
