@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 14, 2023 at 03:24 PM
+-- Generation Time: Jun 16, 2023 at 02:15 PM
 -- Server version: 5.5.68-MariaDB
 -- PHP Version: 8.0.29
 
@@ -31,7 +31,8 @@ CREATE TABLE `S402_restaurants` (
   `id_restaurant` int(11) NOT NULL,
   `nom` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `adresse` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-  `coordonnes_gps` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL
+  `latitude` varchar(20) NOT NULL,
+  `longitude` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
