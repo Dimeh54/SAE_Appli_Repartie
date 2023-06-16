@@ -1,3 +1,5 @@
+package service;
+
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.AccessException;
@@ -22,6 +24,7 @@ public class LancerService {
             Registry reg = LocateRegistry.getRegistry(port);
             // On enregistre le service dans l'annuaire
             reg.rebind("serviceRestaurant", rd);
+
         // On gère les exceptions
         } catch (NumberFormatException e) {
             System.out.println("Le port spécifié n'est pas un entier");

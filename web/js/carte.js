@@ -18,7 +18,16 @@ async function init() {
     traffic.displayOnMap(map, traffic_tab);
 
     // On ajoute les évènements liés aux checkbox
-    ajoutEvent();    
+    ajoutEvent();
+    
+    testMarkerRestaurant();
+}
+
+function testMarkerRestaurant() {
+    var marker = L.marker([48.65434898630919,6.105573995362762]).addTo(map);
+
+        // Popup du marker
+        marker.bindPopup("<button class='w3-button w3-blue' onclick='openCard()'>Réservation</button>");
 }
 
 /**
