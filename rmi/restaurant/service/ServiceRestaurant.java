@@ -11,11 +11,12 @@ public class ServiceRestaurant implements InterfaceRestaurant {
         Statement st = createStatement("SELECT * FROM RESTAURANT");
         ResultSet rs = st.executeStatement();
         while (rs.next()) {
+            
             res.append("{\"id\":"+rs.getInt("id_restaurant")+",");
             res.append("\"nom\":\""+rs.getString("nom")+"\",");
             res.append("\"adresse\":\""+rs.getString("adresse")+"\",");
-            res.append("\"latitude\":"+rs.getDouble("latitude")+",");
-            res.append("\"longitude\":"+rs.getDouble("longitude")+"},");
+            res.append("\"latitude\":"+rs.getString("latitude")+",");
+            res.append("\"longitude\":"+rs.getString("longitude")+"},");
         }
         res.append("]");
         return res.toString();

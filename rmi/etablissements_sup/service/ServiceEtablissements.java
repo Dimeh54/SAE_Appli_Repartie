@@ -31,11 +31,8 @@ public class ServiceEtablissements implements InterfaceEtablissements {
                 .build();
 
         try {
-            System.out.println("avant");
             
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            System.out.println("apres");
 
             int statusCode = response.statusCode();
             System.out.println("Status Code: " + statusCode);
