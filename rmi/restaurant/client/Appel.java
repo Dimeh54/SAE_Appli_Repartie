@@ -12,7 +12,7 @@ import java.rmi.server.ServerNotActiveException;
 
 
 public class Appel {
-    public static void main(String[] args) throws RemoteException, NotBoundException, ServerNotActiveException {
+    public static void main(String[] args) throws ServerNotActiveException {
         try {
             // On récupère l'adresse et le port
             String adresse = args[0];
@@ -24,8 +24,9 @@ public class Appel {
             InterfaceRestaurant ir = (InterfaceRestaurant) reg.lookup("serviceRestaurant");
             
             // On appelle la méthode distante
-            String restaurantsJson = ir.recupererRestaurants();
-            System.out.println(restaurantsJson);
+            System.out.println(ir.recupererRestaurants());
+            System.out.println(ir.enregistrerReservation("Jean", "Dupont", 2, "0666666666", 1));
+            System.out.println(ir.recupererRestaurant("Les Ptits oignons"));
 
             
         // On gère les exceptions
