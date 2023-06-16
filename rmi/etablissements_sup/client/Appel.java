@@ -1,7 +1,13 @@
+package client;
+import service.InterfaceEtablissements;
+
+import java.io.FileNotFoundException;
+import java.rmi.ConnectException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.UnknownHostException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.RemoteException;
-import java.rmi.NotBoundException;
 import java.rmi.server.ServerNotActiveException;
 
 
@@ -10,17 +16,19 @@ public class Appel {
         try {
             // On récupère l'adresse et le port
             String adresse = args[0];
+            //String adresse = "127.0.0.1";
             int port = 1099;
             if(args.length > 1) port = Integer.parseInt(args[1]);
             // On récupère le registre distant
             Registry reg = LocateRegistry.getRegistry(adresse, port);
             // On récupère le service distant
-            ServiceDistant sd = (ServiceDistant) reg.lookup("NomService");
+            InterfaceEtablissements se = (InterfaceEtablissements) reg.lookup("etablissements");
             // On appelle la méthode distante
-            sd.methodeDistante();
+            se.recupererEtablissements();
         // On gère les exceptions
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Une IP ou un hôte doit être spécifié en argument");
+            e.printStackTrace();
+            //System.out.println("Une IP ou un hôte doit être spécifié en argument");
         } catch (NotBoundException e) {
             System.out.println("Le service distant appelé est introuvable");
         } catch (UnknownHostException e) {
@@ -29,6 +37,8 @@ public class Appel {
             System.out.println("Impossible de se connecter à l’annuaire rmiregistry distant");
         } catch (RemoteException e) {
             System.out.println("Impossible de se connecter au serveur distant");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
