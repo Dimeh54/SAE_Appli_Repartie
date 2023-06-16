@@ -1,6 +1,6 @@
 INSERT INTO S402_restaurants ("nom", "adresse", "latitude", "longitude")
 VALUES
-    ('Les Ptits Oignons', '48 Rue Jeanne d'Arc, 54000 Nancy', 48.686471008084, 6.171271012244404),
+    ('Les Ptits Oignons', '48 Rue Jeanne dArc, 54000 Nancy', 48.686471008084, 6.171271012244404),
     ('Mama Betty', '401 Avenue de Boufflers 54520 Laxou', 48.69346700547891, 6.13732103544163),
     ('Le Singe Hardi', '36 Avenue de Maron 54600 Villers-les-Nancy', 48.66434898630919, 6.135573995362762),
     ('Hippone restaurant', '46 Avenue de la Malgrange 54140 Jarville-la-Malgrange', 48.66741802015687, 6.198453021328163),

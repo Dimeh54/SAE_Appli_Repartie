@@ -1,3 +1,5 @@
+package service;
+
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.AccessException;

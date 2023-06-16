@@ -1,4 +1,6 @@
-   import java.io.FileNotFoundException;
+package service;
+
+import java.io.FileNotFoundException;
 import java.rmi.Remote;
    import java.rmi.RemoteException;
    import java.rmi.server.ServerNotActiveException;
