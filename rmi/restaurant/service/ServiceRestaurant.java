@@ -44,7 +44,7 @@ public class ServiceRestaurant implements InterfaceRestaurant {
             }
             res.deleteCharAt(res.length()-2);
             res.append("\t]\n");
-            res.append("}\n");
+            res.append("}");
         } catch (SQLException e) {
             e.printStackTrace();
             res = new StringBuilder("{");
@@ -79,7 +79,7 @@ public class ServiceRestaurant implements InterfaceRestaurant {
                 res.append("\t\"success\": \"false\",\n");
                 res.append("\t\"error\": \"Aucun restaurant trouvé avec le nom : \'"+nom+"\'\"\n");
             }
-            res.append("}\n");
+            res.append("}");
         } catch (SQLException e) {
             e.printStackTrace();
             res = new StringBuilder("{");
@@ -91,16 +91,17 @@ public class ServiceRestaurant implements InterfaceRestaurant {
     }
 
     @Override
-    public String enregistrerReservation(String nom, String prenom, int nbpers, String numtel, int id_restaurant) throws RemoteException {
+    public String enregistrerReservation(String nom, String prenom, int nbpers, String numtel, String date, int id_restaurant) throws RemoteException {
         StringBuilder res;
         try {
-            String SQLPrep = "INSERT INTO S402_reservations (nom, prenom, nb_pers, num_tel, id_restaurant) VALUES (?, ?, ?, ?, ?);";
+            String SQLPrep = "INSERT INTO S402_reservations (nom, prenom, nb_pers, num_tel, date, id_restaurant) VALUES (?, ?, ?, ?, STR_TO_DATE(?, '%Y-%m-%d %H:%i'), ?);";
             PreparedStatement prep = connect.prepareStatement(SQLPrep);
             prep.setString(1, nom);
             prep.setString(2, prenom);
             prep.setInt(3, nbpers);
             prep.setString(4, numtel);
-            prep.setInt(5, id_restaurant);
+            prep.setString(5, date);
+            prep.setInt(6, id_restaurant);
             prep.execute();
             res = new StringBuilder("{\n");
             res.append("\t\"success\": \"true\"\n");

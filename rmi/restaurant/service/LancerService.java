@@ -9,7 +9,7 @@ import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
 public class LancerService {
-    public static void main(String[] args) throws AccessException, RemoteException {
+    public static void main(String[] args) {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut
             int port = 1099;
@@ -21,7 +21,7 @@ public class LancerService {
             // On exporte l'objet
             InterfaceRestaurant rd = (InterfaceRestaurant) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire local rmiregistry 
-            Registry reg = LocateRegistry.getRegistry(port);
+            Registry reg = LocateRegistry.getRegistry("127.0.0.1", port);
             // On enregistre le service dans l'annuaire
             reg.rebind("serviceRestaurant", rd);
 
@@ -32,6 +32,9 @@ public class LancerService {
             System.out.println("Le port pour l’export de l’objet est déjà utilisé");
         } catch (ConnectException e) {
             System.out.println("L’annuaire rmiregistry est introuvable");
+        } catch (AccessException e) {
+            System.out.println("erreur : accès interdit");
+            System.exit(1);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
