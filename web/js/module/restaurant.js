@@ -25,7 +25,7 @@ function displayOnMap(map, tab_restaurant) {
         // Popup du marker
         marker.bindPopup("<b>"+tab_restaurant[i].nom
             +"</b><p>"+tab_restaurant[i].adresse
-            +"</p><button class='w3-small w3-padding-small' onclick='openCard(\""+ tab_restaurant[i].nom +"\")'>Réserver maintenant</button>");
+            +"</p><button class='w3-small w3-padding-small' onclick='openCard(\""+ tab_restaurant[i].nom +"\","+ tab_restaurant[i].id +")'>Réserver maintenant</button>");
 
         // On récupère les markers dans un tableau pour pouvoir les utiliser pour les évènements (checkbox)
         markers_restaurant.push(marker);

@@ -1,6 +1,7 @@
 import velib from "./module/velib.js";
 import traffic from "./module/traffic.js";
 import restaurant from "./module/restaurant.js";
+import sendFormulaire from "./sendFormulaire.js";
 
 var map;
 
@@ -62,7 +63,7 @@ function ajoutEvent() {
     const form = document.querySelector('#formulaire');
     form.addEventListener('submit', async function(event) {
         event.preventDefault(); // Empêche la soumission du formulaire
-        await sendFormulaire.envoyerFormulaire(id_restaurant); // TODO
+        await sendFormulaire.envoyerFormulaire();
     });
 }
 

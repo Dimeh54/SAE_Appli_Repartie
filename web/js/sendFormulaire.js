@@ -1,9 +1,3 @@
-window.onload = function() {
-    let id_restaurant = null;
-    envoyerFormulaire(id_restaurant);
-}
-
-
 /**
  * Permet de réserver un restaurant
  * Envoie une requête POST au serveur proxy
@@ -34,7 +28,7 @@ async function reserver(informations) {
  * Pertmet d'envoyer le formulaire de réservation
  * @param idRestaurant 
  */
-async function envoyerFormulaire(idRestaurant) {
+async function envoyerFormulaire(idRestaurant = null) {
     const loadingIcon = document.querySelector('#loading-icon');
     const form = document.querySelector('#formulaire');
 
@@ -42,6 +36,10 @@ async function envoyerFormulaire(idRestaurant) {
 
     // Récupérer les valeurs des champs du formulaire
     const formData = new FormData(form);
+
+    if (idRestaurant === null) {
+        idRestaurant = formData.get('id');
+    }
     const informations = {
         nom: formData.get('nom'),
         prenom: formData.get('prenom'),

@@ -92,6 +92,7 @@
                 <span onclick="closeCard()" class="w3-button w3-display-topright">&times;</span>
                 <div class="FormBox">
                     <form id="formulaire">
+                        <input type="hidden" name="id" id="id">
                         <div class="banner w3-wide">
                             <h1>Formulaire de réservation</h1>
                         </div>
@@ -114,10 +115,10 @@
                         <div class="item">
                             <h2>Informations de réservation</h2>
                             <div class="name-item">
-                                <input type="text" name="prenom" placeholder="Prénom" required/>
-                                <input type="text" name="nom" placeholder="Nom" required/>
+                                <input type="text" name="prenom" placeholder="Prénom" value="test" required/>
+                                <input type="text" name="nom" placeholder="Nom" value="test" required/>
                             </div>
-                            <input type="tel" name="phone" placeholder="Téléphone" required/>
+                            <input type="tel" name="phone" placeholder="Téléphone" value="test" required/>
                         </div>
                         <div class="btn-block">
                             <button type="submit" href="/">Réserver</button>
@@ -135,11 +136,13 @@
     </div>
 
     <script>
-        function openCard(resto) {
+        function openCard(resto, idRestaurant) {
             var card = document.getElementById("cardContainer");
             let input_resto = document.getElementById("searchInput");
+            let id = document.getElementById("id");
             input_resto.value = resto;
             card.style.display = "block";
+            id.value = idRestaurant;
         }
 
         function closeCard() {
