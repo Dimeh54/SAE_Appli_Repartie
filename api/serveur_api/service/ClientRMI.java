@@ -24,7 +24,9 @@ public class ClientRMI {
                 case "recupererRestaurant":
                     response = ir.recupererRestaurant(String.valueOf(params[0]));
                     break;
-
+                case "enregistrerReservation":
+                    response = ir.enregistrerReservation(params[0], params[1], Integer.parseInt(params[2]), params[3], params[4], Integer.parseInt(params[5]));
+                    break;
             }
 
 
