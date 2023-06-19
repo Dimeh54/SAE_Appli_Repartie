@@ -9,6 +9,7 @@ import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
 public class LancerService {
+    private static final boolean DEBUG = true;
     public static void main(String[] args) {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut
@@ -18,12 +19,24 @@ public class LancerService {
             }
             // On crée une instance du service
             ServiceRestaurant serv = new ServiceRestaurant();
+            if (DEBUG){
+                System.out.println("service lancé");
+            }
             // On exporte l'objet
             InterfaceRestaurant rd = (InterfaceRestaurant) UnicastRemoteObject.exportObject(serv, 0);
+            if (DEBUG){
+                System.out.println("objet exporté");
+            }
             // On récupère l'annuaire local rmiregistry 
             Registry reg = LocateRegistry.getRegistry("127.0.0.1", port);
+            if (DEBUG){
+                System.out.println("annuaire local récupéré");
+            }
             // On enregistre le service dans l'annuaire
             reg.rebind("serviceRestaurant", rd);
+            if (DEBUG){
+                System.out.println("service enregistré");
+            }
 
         // On gère les exceptions
         } catch (NumberFormatException e) {
