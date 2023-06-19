@@ -1,4 +1,4 @@
-import loader from "./loader";
+import loader from "./loader.js";
 
 /**
  * Module correspondant à la gestion des instituts supérieurs
@@ -36,8 +36,29 @@ function displayOnMap(map, tab_institut) {
  */
 async function creerTabInstitut() {
     //let url_institut = "https://proxy";
+    let url_institut = "../Ressources/etablissements.json";
 
-    // // On fait un appel aux infos des instituts supérieurs
-    // let instituts = await loader.load_ressource(url_institut);
-    // let tab_institut = instituts.instituts;
+    // On fait un appel aux infos des instituts supérieurs
+    let instituts = await loader.load_ressource(url_institut);
+    //let tab_institut = instituts.instituts;
+    let tab_institut = [];
+    for (let institut of instituts) {
+        let f = institut.fields;
+        console.log(institut);
+        
+        // on vérifie si l'institut a une propriété type
+        if (institut.geometry !== undefined) {
+            tab_institut.push({
+                "adresse":f.adresse_uai,
+                "postal":f.code_postal_uai,
+                "latitude":institut.geometry.coordinates[1],
+                "longitude":institut.geometry.coordinates[0],
+                "nom":f.uo_lib,
+            });
+        }
+    }
+    console.log(tab_institut);
+    return tab_institut;
 }
+
+export default { creerTabInstitut, displayOnMap, markers_institut };
