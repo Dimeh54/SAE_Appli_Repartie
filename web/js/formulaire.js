@@ -1,4 +1,5 @@
 import loader from "./module/loader.js";
+import sendFormulaire from "./sendFormulaire.js";
 
 
 window.addEventListener("load", init);
@@ -82,5 +83,12 @@ function ajouterEvent() {
             searchInput.setCustomValidity("");
             id_restaurant = selectedOptionId;
         }
+    });
+
+    //Envoie le formulaire
+    const form = document.querySelector('#formulaire');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Empêche la soumission du formulaire
+        await sendFormulaire.envoyerFormulaire(id_restaurant);
     });
 }

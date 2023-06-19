@@ -34,45 +34,41 @@ async function reserver(informations) {
  * Pertmet d'envoyer le formulaire de réservation
  * @param idRestaurant 
  */
-function envoyerFormulaire(idRestaurant) {
-    // Sélectionnez le formulaire
+async function envoyerFormulaire(idRestaurant) {
+    const loadingIcon = document.querySelector('#loading-icon');
     const form = document.querySelector('#formulaire');
 
-    // Ajoutez un écouteur d'événement pour l'événement "submit" du formulaire
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Empêche la soumission du formulaire
-        loadingIcon.style.display = 'block';
+    loadingIcon.style.display = 'block';
 
-        // Récupérer les valeurs des champs du formulaire
-        const formData = new FormData(form);
-        const informations = {
-            nom: formData.get('nom'),
-            prenom: formData.get('prenom'),
-            telephone: formData.get('phone'),
-            personnes: formData.get('personnes'),
-            date: formData.get('date'),
-            heure: formData.get('heure'),
-            restaurant: formData.get('restaurant'),
-            id: idRestaurant
-        };
+    // Récupérer les valeurs des champs du formulaire
+    const formData = new FormData(form);
+    const informations = {
+        nom: formData.get('nom'),
+        prenom: formData.get('prenom'),
+        telephone: formData.get('phone'),
+        personnes: formData.get('personnes'),
+        date: formData.get('date'),
+        heure: formData.get('heure'),
+        restaurant: formData.get('restaurant'),
+        id: idRestaurant
+    };
 
-        // Envoyer les informations au serveur
-        let response = await reserver(informations);
-        
-        // Afficher un message de confirmation
-        loadingIcon.style.display = 'none';
-        let message = document.querySelector('#response');
-        if (response) {
-            message.innerHTML = "Votre réservation a bien été prise en compte !";
-            message.style.display = 'block';
-        }
-        else {
-            message.innerHTML = "Une erreur est survenue lors de la réservation.";
-            message.style.display = 'block';
-        }
+    // Envoyer les informations au serveur
+    let response = await reserver(informations);
+    
+    // Afficher un message de confirmation
+    loadingIcon.style.display = 'none';
+    let message = document.querySelector('#response');
+    if (response) {
+        message.innerHTML = "Votre réservation a bien été prise en compte !";
+        message.style.display = 'block';
+    }
+    else {
+        message.innerHTML = "Une erreur est survenue lors de la réservation.";
+        message.style.display = 'block';
+    }
 
-        console.log("Formulaire soumis");
-    });
+    console.log("Formulaire soumis");
 }
 
-const loadingIcon = document.querySelector('#loading-icon');
+export default { envoyerFormulaire };

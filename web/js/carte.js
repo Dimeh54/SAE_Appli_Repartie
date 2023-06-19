@@ -1,6 +1,7 @@
 import velib from "./module/velib.js";
 import traffic from "./module/traffic.js";
 import restaurant from "./module/restaurant.js";
+import institut from "./module/institut.js";
 
 var map;
 
@@ -21,6 +22,10 @@ async function init() {
     // On crée le tableau des restaurants et on les affiche sur la carte
     let tab_restaurant = await restaurant.creerTabRestaurant();
     restaurant.displayOnMap(map, tab_restaurant);
+
+    // On crée le tableau des instituts et on les affiche sur la carte
+    let tab_institut = await institut.creerTabInstitut();
+    institut.displayOnMap(map, tab_institut);
 
     // On ajoute les évènements liés aux checkbox
     ajoutEvent();
@@ -44,6 +49,7 @@ function creerMap() {
  * Ajoute les évènements liés aux checkbox
  */
 function ajoutEvent() {
+    // Checkbox pour afficher ou cacher les markers
     let checkbox_velib = document.getElementById("checkbox-velib");
     checkbox_velib.addEventListener("change", function (e) {
         toggleMarker(e.target, velib.markers_velib);
@@ -57,6 +63,18 @@ function ajoutEvent() {
     let checkbox_restaurant = document.getElementById("checkbox-restaurant");
     checkbox_restaurant.addEventListener("change", function (e) {
         toggleMarker(e.target, restaurant.markers_restaurant);
+    });
+
+    let checkbox_institut = document.getElementById("checkbox-institut");
+    checkbox_institut.addEventListener("change", function (e) {
+        toggleMarker(e.target, institut.markers_institut);
+    });
+
+    //Envoie du formulaire
+    const form = document.querySelector('#formulaire');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Empêche la soumission du formulaire
+        await sendFormulaire.envoyerFormulaire(id_restaurant); // TODO
     });
 }
 
