@@ -24,8 +24,6 @@ async function init() {
 
     // On ajoute les évènements liés aux checkbox
     ajoutEvent();
-    
-    //testMarkerRestaurant();
 }
 
 
@@ -44,6 +42,7 @@ function creerMap() {
  * Ajoute les évènements liés aux checkbox
  */
 function ajoutEvent() {
+    // Checkbox pour afficher ou cacher les markers
     let checkbox_velib = document.getElementById("checkbox-velib");
     checkbox_velib.addEventListener("change", function (e) {
         toggleMarker(e.target, velib.markers_velib);
@@ -57,6 +56,13 @@ function ajoutEvent() {
     let checkbox_restaurant = document.getElementById("checkbox-restaurant");
     checkbox_restaurant.addEventListener("change", function (e) {
         toggleMarker(e.target, restaurant.markers_restaurant);
+    });
+
+    //Envoie du formulaire
+    const form = document.querySelector('#formulaire');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Empêche la soumission du formulaire
+        await sendFormulaire.envoyerFormulaire(id_restaurant); // TODO
     });
 }
 
