@@ -1,15 +1,19 @@
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
-import java.security.*;
-import java.security.cert.CertificateException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class serveur {
-    public static void main(String[] args) throws IOException, KeyStoreException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException, KeyManagementException {
+    public static void main(String[] args) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/api/restaurants", new GetRestaurants());
         server.createContext("/api/restaurant", exchange -> {
@@ -39,21 +43,29 @@ public class serveur {
         server.createContext("/api/reservation", exchange -> {
             if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
 
-                // Lire le corps de la requête POST
+                InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
+                String temp = br.readLine();
+                StringBuilder sb = new StringBuilder();
+                while (temp != null) {
+                    sb.append(temp);
+                    temp = br.readLine();
+                }
 
-                System.out.println(exchange.getRequestBody().read());
-
-                // Créer une instance de getRestaurant avec les paramètres de la requête POST
+                String jsonString = sb.toString();
+                JSONObject obj = new JSONObject(jsonString);
+                // add the values to a map
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("nom", "test");
-                // ... Autres paramètres à inclure
+                parameters.put("nom", obj.getString("nom"));
+                parameters.put("prenom", obj.getString("prenom"));
+                parameters.put("nbpers", obj.getString("nbpers"));
+                parameters.put("numtel", obj.getString("numtel"));
+                parameters.put("date", obj.getString("date"));
+                parameters.put("id_restaurant", obj.getString("id_restaurant"));
+
                 HttpHandler handler = new PostReservation(parameters);
 
-                // Exécuter la logique de traitement de la requête dans getRestaurant
                 handler.handle(exchange);
-            } else {
-                // Autre logique pour les autres méthodes HTTP (GET, PUT, etc.)
-                // ...
             }
         });
 

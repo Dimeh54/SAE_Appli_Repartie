@@ -1,5 +1,6 @@
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import service.ClientRMI;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,17 +9,13 @@ import java.util.Map;
 public class PostReservation implements HttpHandler {
     private Map<String, String> parameters;
     public PostReservation(Map<String, String> parameters) {
-
+        this.parameters = parameters;
     }
 
     @Override
     public void handle(HttpExchange t) throws IOException {
-        // Utiliser les paramètres de la requête POST
-        String nom = parameters.get("nom");
-        // ... Autres traitements
-
-        // Réponse de la requête
-        String response = "Paramètres de la requête POST : " + parameters.toString();
+        ClientRMI clientRMI = new ClientRMI();
+        String response = clientRMI.appelRMI("enregistrerReservation", new String[] {parameters.get("nom"), parameters.get("prenom"), parameters.get("nbpers"), parameters.get("numtel"), parameters.get("date"), parameters.get("id_restaurant")});
 
         // Envoyer la réponse
         t.sendResponseHeaders(200, response.getBytes().length);

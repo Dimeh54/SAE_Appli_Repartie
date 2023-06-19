@@ -43,12 +43,11 @@ async function envoyerFormulaire(idRestaurant = null) {
     const informations = {
         nom: formData.get('nom'),
         prenom: formData.get('prenom'),
-        telephone: formData.get('phone'),
-        personnes: formData.get('personnes'),
-        date: formData.get('date'),
-        heure: formData.get('heure'),
+        numtel: formData.get('phone'),
+        nbpers: formData.get('personnes'),
+        date : (formData.get('date') + " " + formData.get('heure')),
         restaurant: formData.get('restaurant'),
-        id: idRestaurant
+        id_restaurant: idRestaurant
     };
 
     // Envoyer les informations au serveur
