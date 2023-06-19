@@ -1,6 +1,5 @@
 package service;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.ServerNotActiveException;
 import java.sql.*;
@@ -61,7 +60,7 @@ public class ServiceRestaurant implements InterfaceRestaurant {
         try {
             String SQLPrep = "SELECT * FROM S402_restaurants WHERE LOWER(nom) like LOWER(?);";
             PreparedStatement prep = connect.prepareStatement(SQLPrep);
-            prep.setString(1, nom);
+            prep.setString(1, '%'+nom+'%');
             prep.execute();
             ResultSet rs = prep.getResultSet();
 
