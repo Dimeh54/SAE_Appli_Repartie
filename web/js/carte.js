@@ -1,6 +1,7 @@
 import velib from "./module/velib.js";
 import traffic from "./module/traffic.js";
 import restaurant from "./module/restaurant.js";
+import institut from "./module/institut.js";
 
 var map;
 
@@ -22,8 +23,14 @@ async function init() {
     let tab_restaurant = await restaurant.creerTabRestaurant();
     restaurant.displayOnMap(map, tab_restaurant);
 
+    // On crée le tableau des instituts et on les affiche sur la carte
+    let tab_institut = await institut.creerTabInstitut();
+    institut.displayOnMap(map, tab_institut);
+
     // On ajoute les évènements liés aux checkbox
     ajoutEvent();
+    
+    //testMarkerRestaurant();
 }
 
 
@@ -56,6 +63,11 @@ function ajoutEvent() {
     let checkbox_restaurant = document.getElementById("checkbox-restaurant");
     checkbox_restaurant.addEventListener("change", function (e) {
         toggleMarker(e.target, restaurant.markers_restaurant);
+    });
+
+    let checkbox_institut = document.getElementById("checkbox-institut");
+    checkbox_institut.addEventListener("change", function (e) {
+        toggleMarker(e.target, institut.markers_institut);
     });
 
     //Envoie du formulaire
