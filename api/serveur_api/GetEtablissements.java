@@ -1,6 +1,6 @@
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import service.ClientRMI;
+import service.*;
 import service.ReponseEtablissement;
 
 import java.io.IOException;
