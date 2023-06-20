@@ -10,7 +10,7 @@ public class GetRestaurants implements HttpHandler{
     public void handle(HttpExchange t) {
         try {
             ClientRMI clientRMI = new ClientRMI();
-            String response = clientRMI.appelRMI("recupererRestaurants", null);
+            String response = (String) clientRMI.appelRMI("recupererRestaurants", null);
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());

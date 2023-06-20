@@ -1,5 +1,7 @@
 package client;
+
 import service.InterfaceEtablissements;
+import service.ReponseEtablissement;
 
 import java.io.FileNotFoundException;
 import java.rmi.ConnectException;
@@ -11,12 +13,13 @@ import java.rmi.registry.Registry;
 import java.rmi.server.ServerNotActiveException;
 
 
-public class Appel {
+public class ClientTestEtablissements {
     public static void main(String[] args) throws RemoteException, NotBoundException, ServerNotActiveException {
         try {
             // On récupère l'adresse et le port
-            String adresse = args[0];
-            //String adresse = "127.0.0.1";
+            String adresse = "127.0.0.1";
+            if (args.length > 0) adresse = args[0];
+
             int port = 1099;
             if(args.length > 1) port = Integer.parseInt(args[1]);
             // On récupère le registre distant
@@ -24,7 +27,9 @@ public class Appel {
             // On récupère le service distant
             InterfaceEtablissements se = (InterfaceEtablissements) reg.lookup("etablissements");
             // On appelle la méthode distante
-            se.recupererEtablissements();
+            ReponseEtablissement res = se.recupererEtablissements();
+            // On affiche le résultat
+            System.out.println(res);
         // On gère les exceptions
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
@@ -36,6 +41,8 @@ public class Appel {
         } catch (ConnectException e) {
             System.out.println("Impossible de se connecter à l’annuaire rmiregistry distant");
         } catch (RemoteException e) {
+            e.printStackTrace();
+            //System.out.println(e.getMessage());
             System.out.println("Impossible de se connecter au serveur distant");
         } catch (FileNotFoundException e) {
             e.printStackTrace();

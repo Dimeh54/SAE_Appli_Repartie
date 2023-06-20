@@ -15,7 +15,7 @@ public class PostReservation implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
         ClientRMI clientRMI = new ClientRMI();
-        String response = clientRMI.appelRMI("enregistrerReservation", new String[] {parameters.get("nom"), parameters.get("prenom"), parameters.get("nbpers"), parameters.get("numtel"), parameters.get("date"), parameters.get("id_restaurant")});
+        String response = (String) clientRMI.appelRMI("enregistrerReservation", new String[] {parameters.get("nom"), parameters.get("prenom"), parameters.get("nbpers"), parameters.get("numtel"), parameters.get("date"), parameters.get("id_restaurant")});
 
         // Envoyer la réponse
         t.sendResponseHeaders(200, response.getBytes().length);

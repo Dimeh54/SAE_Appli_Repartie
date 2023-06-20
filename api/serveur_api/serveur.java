@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class serveur {
     public static void main(String[] args) throws IOException {
+        System.out.println("Lancement du serveur Http en cours...");
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/api/restaurants", new GetRestaurants());
         server.createContext("/api/restaurant", exchange -> {
@@ -69,7 +70,10 @@ public class serveur {
             }
         });
 
+        server.createContext("/api/etablissements", new GetEtablissements());
         server.setExecutor(null); // creates a default executor
         server.start();
+        // on affiche un message de lancement du serveur
+        System.out.println("Serveur Http démarré sur le port 8000");
     }
 }

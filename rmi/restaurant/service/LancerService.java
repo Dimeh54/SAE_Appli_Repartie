@@ -27,7 +27,7 @@ public class LancerService {
             if (DEBUG){
                 System.out.println("objet exporté");
             }
-            // On récupère l'annuaire local rmiregistry 
+            // On récupère l'annuaire local rmiregistry
             Registry reg = LocateRegistry.getRegistry("127.0.0.1", port);
             if (DEBUG){
                 System.out.println("annuaire local récupéré");
@@ -45,6 +45,7 @@ public class LancerService {
             System.out.println("Le port pour l’export de l’objet est déjà utilisé");
         } catch (ConnectException e) {
             System.out.println("L’annuaire rmiregistry est introuvable");
+            //e.printStackTrace();
         } catch (AccessException e) {
             System.out.println("erreur : accès interdit");
             System.exit(1);
