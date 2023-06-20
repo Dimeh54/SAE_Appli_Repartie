@@ -13,8 +13,8 @@ var markers_institut = [];
 function displayOnMap(map, tab_institut) {
     // Créer une icône personnalisée
     var customIcon = L.icon({
-        iconUrl: '../Ressources/institut.png',
-        iconSize: [26, 26],
+        iconUrl: '../Ressources/marker-institut.png',
+        iconSize: [30, 30],
         iconAnchor: [0, 0],
         popupAnchor: [0, -40]
     });
@@ -28,6 +28,9 @@ function displayOnMap(map, tab_institut) {
         // On récupère les markers dans un tableau pour pouvoir les utiliser pour les évènements (checkbox)
         markers_institut.push(marker);
       }
+    let layerInstitut = L.layerGroup(markers_institut);
+    layerInstitut.addTo(map);
+    return layerInstitut;
 }
 
 /**
@@ -44,7 +47,6 @@ async function creerTabInstitut() {
     let tab_institut = [];
     for (let institut of instituts) {
         let f = institut.fields;
-        console.log(institut);
         
         // on vérifie si l'institut a une propriété type
         if (institut.geometry !== undefined) {
@@ -57,7 +59,6 @@ async function creerTabInstitut() {
             });
         }
     }
-    console.log(tab_institut);
     return tab_institut;
 }
 

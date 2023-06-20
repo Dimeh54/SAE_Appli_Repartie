@@ -30,6 +30,9 @@ function displayOnMap(map, tab_velib) {
         // On récupère les markers dans un tableau pour pouvoir les utiliser pour les évènements (checkbox)
         markers_velib.push(marker);
       }
+    let layerVelib = L.layerGroup(markers_velib);
+    layerVelib.addTo(map);
+    return layerVelib;
 }
 
 /**
