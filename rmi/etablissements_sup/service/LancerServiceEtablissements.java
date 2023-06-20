@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
-public class LancerService {
+public class LancerServiceEtablissements {
     public static void main(String[] args) throws AccessException, RemoteException {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut
@@ -20,9 +20,12 @@ public class LancerService {
             // On exporte l'objet
             InterfaceEtablissements rd = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire local rmiregistry 
-            Registry reg = LocateRegistry.getRegistry(port);
+            //Registry reg = LocateRegistry.getRegistry(port);
+            Registry reg = LocateRegistry.createRegistry(port);
             // On enregistre le service dans l'annuaire
             reg.rebind("etablissements", rd);
+            // On affiche un message pour le suivi
+            System.out.println("Service Etablissements lancé sur le port " + port);
         // On gère les exceptions
         } catch (NumberFormatException e) {
             System.out.println("Le port spécifié n'est pas un entier");

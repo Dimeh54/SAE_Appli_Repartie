@@ -2,8 +2,6 @@ package service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.ProxySelector;
-import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -11,10 +9,13 @@ import java.net.http.HttpResponse;
 import java.rmi.RemoteException;
 import java.rmi.server.ServerNotActiveException;
 
+import static java.lang.System.exit;
+
+
 public class ServiceEtablissements implements InterfaceEtablissements, Serializable {
 
-    public Object[] recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
-        Object[] resultat = {new Object(), new Object(), new Object()};
+    public ReponseEtablissement recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
+        ReponseEtablissement resultat = null;
 
 
         //new ServiceEtablissements().recupererEtablissements();
@@ -27,7 +28,11 @@ public class ServiceEtablissements implements InterfaceEtablissements, Serializa
         String urlProxy = "www-cache";
         int port = 3128;
         //HttpClient httpClient = HttpClient.newHttpClient();
-        HttpClient httpClient = HttpClient.newBuilder().proxy(ProxySelector.of(new InetSocketAddress(urlProxy, port))).build();
+        /*HttpClient httpClient = HttpClient.newBuilder().proxy(ProxySelector.of(new InetSocketAddress(urlProxy, port))).build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .build();*/
+        HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .build();
@@ -36,21 +41,16 @@ public class ServiceEtablissements implements InterfaceEtablissements, Serializa
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-            Integer statusCode = response.statusCode();
-            resultat[0] = statusCode;
-            System.out.println("Status Code: " + statusCode);
-
+            int statusCode = response.statusCode();
             String contentType = response.headers().firstValue("Content-Type").orElse("");
-            resultat[1] = contentType;
-            System.out.println("Content-Type: " + contentType);
-
             String responseBody = response.body();
-            resultat[2] = responseBody;
-            System.out.println("Response Body:");
-            System.out.println(responseBody);
+
+            resultat = new ReponseEtablissement(statusCode, contentType, responseBody);
+            //System.out.println(resultat);
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            exit(1);
         }
         return resultat;
     }
