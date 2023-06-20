@@ -46,9 +46,9 @@ async function envoyerFormulaire(idRestaurant = null) {
         numtel: formData.get('phone'),
         nbpers: formData.get('personnes'),
         date : (formData.get('date') + " " + formData.get('heure')),
-        restaurant: formData.get('restaurant'),
         id_restaurant: idRestaurant
     };
+    console.log(informations);
 
     // Envoyer les informations au serveur
     let response = await reserver(informations);
