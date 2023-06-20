@@ -52,6 +52,9 @@ function displayOnMap(map, tab_traffic) {
 
         markers_traffic.push(marker);
     }
+    let layerTraffic = L.layerGroup(markers_traffic);
+    layerTraffic.addTo(map);
+    return layerTraffic;
 }
 
 export default { creerTabTraffic, displayOnMap, markers_traffic };

@@ -30,6 +30,9 @@ function displayOnMap(map, tab_restaurant) {
         // On récupère les markers dans un tableau pour pouvoir les utiliser pour les évènements (checkbox)
         markers_restaurant.push(marker);
       }
+    let layerRestaurant = L.layerGroup(markers_restaurant);
+    layerRestaurant.addTo(map);
+    return layerRestaurant;
 }
 
 /**
