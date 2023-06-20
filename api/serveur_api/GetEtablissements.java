@@ -7,10 +7,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class GetEtablissements implements HttpHandler {
+    private String ip;
+    private int port;
+
+    public GetEtablissements(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
+    }
     @Override
     public void handle(HttpExchange t) throws IOException {
         try {
-            ClientRMI clientRMI = new ClientRMI();
+            ClientRMI clientRMI = new ClientRMI(ip, port);
             ReponseEtablissement response = (ReponseEtablissement) clientRMI.appelRMI("recupererEtablissements", null);
             t.getResponseHeaders().set("Content-Type", response.getContentType());
             t.sendResponseHeaders(response.getStatusCode(), response.getResponseBody().getBytes().length);

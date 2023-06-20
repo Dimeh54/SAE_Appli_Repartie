@@ -10,12 +10,26 @@ import java.rmi.registry.Registry;
 import java.rmi.server.ServerNotActiveException;
 
 public class ClientRMI {
+    public static String ip = "127.0.0.1";
+    public static int port = 1099;
+
+    public ClientRMI(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
+    }
+
     public Object appelRMI(String methode, String[] params) {
         Object response = "{\n\tsuccess: false,\n\tmessage: \"Une erreur est survenue\"\n}";
 
         try {
+            Registry reg = null;
+            try {
+                reg = LocateRegistry.getRegistry(this.ip, this.port);
+            } catch (RemoteException e) {
+                System.out.println("connexion au serveur impossible");
+                System.exit(1);
+            }
 
-            Registry reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
             InterfaceRestaurant ir = null;
             InterfaceEtablissements ie = null;
             try {
