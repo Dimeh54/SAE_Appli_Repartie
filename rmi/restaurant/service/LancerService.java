@@ -13,25 +13,46 @@ public class LancerService {
     public static void main(String[] args) {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut
-            int port = 1099;
-            if (args.length > 0) {
-                port = Integer.parseInt(args[0]);
+            Registry reg = null;
+
+            try {
+                if (args.length != 2) {
+                    System.out.println("utilisation : java Appel <adresse annuaire> <port annuaire>");
+                    System.out.println("utilisation des valeurs par défaut : ");
+                    System.out.println("\t- adresse : 127.0.0.1");
+                    System.out.println("\t- port : 1099");
+                    System.out.println();
+                    reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
+                } else {
+                    reg = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
+                }
+                if (DEBUG){
+                    System.out.println("annuaire local récupéré");
+                }
+            } catch (RemoteException e) {
+                System.out.println("connexion au serveur impossible");
+                System.exit(1);
+            } catch (NumberFormatException e) {
+                System.out.println("le port doit être un entier");
+                System.exit(1);
             }
+
             // On crée une instance du service
             ServiceRestaurant serv = new ServiceRestaurant();
             if (DEBUG){
                 System.out.println("service lancé");
             }
+
             // On exporte l'objet
             InterfaceRestaurant rd = (InterfaceRestaurant) UnicastRemoteObject.exportObject(serv, 0);
             if (DEBUG){
                 System.out.println("objet exporté");
             }
-            // On récupère l'annuaire local rmiregistry
-            Registry reg = LocateRegistry.getRegistry("127.0.0.1", port);
+
             if (DEBUG){
                 System.out.println("annuaire local récupéré");
             }
+
             // On enregistre le service dans l'annuaire
             reg.rebind("serviceRestaurant", rd);
             if (DEBUG){
