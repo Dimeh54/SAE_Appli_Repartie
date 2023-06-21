@@ -1,29 +1,37 @@
 package service;
-import java.rmi.server.ExportException;
-import java.rmi.server.UnicastRemoteObject;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.ExportException;
+import java.rmi.server.UnicastRemoteObject;
 
 public class LancerServiceEtablissements {
     public static void main(String[] args) throws AccessException, RemoteException {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut
             int port = 1099;
+            String adresse = "127.0.0.1";
             if (args.length > 0) {
-                port = Integer.parseInt(args[0]);
+                adresse = args[0];
+            }
+            if (args.length > 1) {
+                port = Integer.parseInt(args[1]);
             }
             // On crée une instance du service
             ServiceEtablissements serv = new ServiceEtablissements();
+            InterfaceEtablissements ie = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
             // On exporte l'objet
-            InterfaceEtablissements rd = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
-            // On récupère l'annuaire local rmiregistry 
-            //Registry reg = LocateRegistry.getRegistry(port);
-            Registry reg = LocateRegistry.createRegistry(port);
+            //InterfaceEtablissements rd = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
+            // On récupère l'annuaire distant rmiregistry
+            Registry reg = LocateRegistry.getRegistry(adresse, port);
+            InterfaceClientRMI icr = (InterfaceClientRMI) reg.lookup("clientRMI");
+            icr.enregistrerService(ie, "etablissements");
+            //Registry reg = LocateRegistry.createRegistry(port);
             // On enregistre le service dans l'annuaire
-            reg.rebind("etablissements", rd);
+            //reg.rebind("etablissements", rd);
             // On affiche un message pour le suivi
             System.out.println("Service Etablissements lancé sur le port " + port);
         // On gère les exceptions
@@ -34,6 +42,8 @@ public class LancerServiceEtablissements {
         } catch (ConnectException e) {
             System.out.println("L’annuaire rmiregistry est introuvable");
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
             e.printStackTrace();
         }
     }    

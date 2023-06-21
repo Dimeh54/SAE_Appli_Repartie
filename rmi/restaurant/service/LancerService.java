@@ -1,5 +1,6 @@
 package service;
 
+import java.rmi.NotBoundException;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.AccessException;
@@ -54,7 +55,8 @@ public class LancerService {
             }
 
             // On enregistre le service dans l'annuaire
-            reg.rebind("serviceRestaurant", rd);
+            InterfaceClientRMI icr = (InterfaceClientRMI) reg.lookup("clientRMI");
+            icr.enregistrerService(rd, "serviceRestaurant");
             if (DEBUG){
                 System.out.println("service enregistré");
             }
@@ -71,6 +73,8 @@ public class LancerService {
             System.out.println("erreur : accès interdit");
             System.exit(1);
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
             e.printStackTrace();
         }
     }    

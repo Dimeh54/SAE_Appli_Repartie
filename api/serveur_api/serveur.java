@@ -1,5 +1,10 @@
-import com.sun.net.httpserver.*;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpsConfigurator;
+import com.sun.net.httpserver.HttpsParameters;
+import com.sun.net.httpserver.HttpsServer;
 import org.json.JSONObject;
+import service.ClientRMI;
+import service.InterfaceClientRMI;
 
 import javax.net.ssl.*;
 import java.io.BufferedReader;
@@ -8,30 +13,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.security.*;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class serveur {
+    private static ClientRMI clientRMI;
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, KeyStoreException, CertificateException, UnrecoverableKeyException, KeyManagementException {
+
+        // Lancement du client RMI
+        Registry reg = LocateRegistry.createRegistry(1099);
+        clientRMI = new ClientRMI();
+        InterfaceClientRMI icr = (InterfaceClientRMI) UnicastRemoteObject.exportObject(clientRMI, 0);
+        reg.rebind("clientRMI", icr);
+
+
         System.out.println("Lancement du serveur Https en cours...");
-        String ip = "127.0.0.1";
-        int port = 1099;
-        try {
-            if (args.length == 2) {
-                System.out.println("utilisation : java Appel <adresse annuaire> <port annuaire>");
-                System.out.println("utilisation des valeurs par défaut : ");
-                System.out.println("\t- adresse : 127.0.0.1");
-                System.out.println("\t- port : 1099");
-                System.out.println();
-                ip = args[0];
-                port = Integer.parseInt(args[1]);
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("le port doit être un entier");
-            System.exit(1);
-        }
 
         HttpsServer server = HttpsServer.create(new InetSocketAddress(8000), 0);
         SSLContext sslContext = SSLContext.getInstance("TLS");
@@ -71,9 +72,7 @@ public class serveur {
                 }
             }
         });
-        server.createContext("/api/restaurants", new GetRestaurants(ip, port));
-        String finalIp = ip;
-        int finalPort = port;
+        server.createContext("/api/restaurants", new GetRestaurants(clientRMI));
         server.createContext("/api/restaurant", exchange -> {
             // Extraire les paramètres de la requête
             String query = exchange.getRequestURI().getQuery();
@@ -93,13 +92,12 @@ public class serveur {
             }
 
             // Créer une instance de getRestaurant avec l'ID du restaurant
-            HttpHandler handler = new GetRestaurant(restaurantId, finalIp, finalPort);
+            HttpHandler handler = new GetRestaurant(restaurantId, clientRMI);
 
             // Exécuter la logique de traitement de la requête dans getRestaurant
             handler.handle(exchange);
         });
-        String finalIp1 = ip;
-        int finalPort1 = port;
+
         server.createContext("/api/reservation", exchange -> {
             if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
 
@@ -123,16 +121,18 @@ public class serveur {
                 parameters.put("date", obj.getString("date"));
                 parameters.put("id_restaurant", obj.getString("id_restaurant"));
 
-                HttpHandler handler = new PostReservation(parameters, finalIp1, finalPort1);
+                HttpHandler handler = new PostReservation(parameters, clientRMI);
 
                 handler.handle(exchange);
             }
         });
 
-        server.createContext("/api/etablissements", new GetEtablissements(ip, port));
+        server.createContext("/api/etablissements", new GetEtablissements(clientRMI));
         server.setExecutor(null); // creates a default executor
         server.start();
         // on affiche un message de lancement du serveur
         System.out.println("Serveur Http démarré sur le port 8000");
+
+
     }
 }

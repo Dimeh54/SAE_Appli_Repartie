@@ -8,16 +8,15 @@ import java.util.Map;
 
 public class PostReservation implements HttpHandler {
     private Map<String, String> parameters;
-    private String ip;
-    private int port;
-    public PostReservation(Map<String, String> parameters, String ip, int port) {
+    private ClientRMI cr;
+    public PostReservation(Map<String, String> parameters, ClientRMI cr) {
         this.parameters = parameters;
+        this.cr = cr;
     }
 
     @Override
     public void handle(HttpExchange t) throws IOException {
-        ClientRMI clientRMI = new ClientRMI(ip, port);
-        String response = (String) clientRMI.appelRMI("enregistrerReservation", new String[] {parameters.get("nom"), parameters.get("prenom"), parameters.get("nbpers"), parameters.get("numtel"), parameters.get("date"), parameters.get("id_restaurant")});
+        String response = (String) cr.appelRMI("enregistrerReservation", new String[] {parameters.get("nom"), parameters.get("prenom"), parameters.get("nbpers"), parameters.get("numtel"), parameters.get("date"), parameters.get("id_restaurant")});
 
         // Envoyer la réponse
         t.sendResponseHeaders(200, response.getBytes().length);

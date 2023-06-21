@@ -1,21 +1,29 @@
 package service;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.rmi.ConnectException;
-import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.UnknownHostException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ServerNotActiveException;
+import java.util.HashMap;
 
-public class ClientRMI {
+public class ClientRMI implements InterfaceClientRMI, Serializable {
     public static String ip = "127.0.0.1";
     public static int port = 1099;
+    private HashMap<String, Remote> listeServices;
 
     public ClientRMI(String ip, int port) {
         this.ip = ip;
         this.port = port;
+        this.listeServices = new HashMap<String, Remote>();
+    }
+
+    public ClientRMI(){
+        this.listeServices = new HashMap<String, Remote>();
     }
 
     public Object appelRMI(String methode, String[] params) {
@@ -27,20 +35,20 @@ public class ClientRMI {
                 reg = LocateRegistry.getRegistry(this.ip, this.port);
             } catch (RemoteException e) {
                 System.out.println("connexion au serveur impossible");
-                System.exit(1);
+                //System.exit(1);
             }
 
             InterfaceRestaurant ir = null;
             InterfaceEtablissements ie = null;
             try {
-                ir = (InterfaceRestaurant) reg.lookup("serviceRestaurant");
-            } catch (NotBoundException e) {
+                ir = (InterfaceRestaurant) this.listeServices.get("serviceRestaurant");
+            } catch (Exception e) {
                 System.out.println("Service restaurant introuvable");
             }
 
             try {
-                ie = (InterfaceEtablissements) reg.lookup("etablissements");
-            } catch (NotBoundException e) {
+                ie = (InterfaceEtablissements) this.listeServices.get("etablissements");
+            } catch (Exception e) {
                 System.out.println("Service etablissements introuvable");
             }
             // On récupère le service distant
@@ -77,5 +85,15 @@ public class ClientRMI {
         }
 
         return response;
+    }
+
+    @Override
+    public void enregistrerService(Remote service, String nomService) throws RemoteException {
+        this.listeServices.put(nomService, (Remote) service);
+        System.out.println(this.listeServices);
+    }
+
+    public void supprimerService(Remote service) {
+        this.listeServices.remove(service);
     }
 }
