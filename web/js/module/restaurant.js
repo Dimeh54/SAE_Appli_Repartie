@@ -39,17 +39,12 @@ function displayOnMap(map, tab_restaurant) {
  * Créer un tab d'objet qui contiennent les infos dont on a besoin
  * @return tableau d'objets avec les infos des restaurants
  */
-async function creerTabRestaurant() {
-    // let url_restaurant = "https://proxy";
-
-    // // On fait un appel aux infos des restaurants
-    // let restaurants = await loader.load_ressource(url_restaurant);
-    // let tab_restaurant = restaurants.restaurants;
-
-    // Chargement avec des données tests locales
-    // on charge le fichier json restaurant.json qui est en local
-    let url = "../Ressources/restaurants.json";
-    let restaurants = await loader.load_ressource(url);
+async function creerTabRestaurant(adresse = "") {
+    // On fait un appel aux infos des restaurants
+    let fichierSecours = "../Ressources/restaurants.json";
+    let url = adresse + "/api/restaurants";
+    let restaurants = await loader.load_ressource(url, fichierSecours);
+    console.log(restaurants);
     let tab_restaurant = restaurants.restaurants;
 
     return tab_restaurant;
