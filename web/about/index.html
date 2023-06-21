@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Projet SAE - A PROPOS</title>
     <link rel="icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../about.css">
 </head>
 <body>
 <!-- Navbar -->
@@ -42,18 +43,54 @@
     }
 </script>
 
-<div id="content" style="min-height: 100vh;">
-    <h2>Compte-rendu de la SAE</h2>
-<h3> Architecture du projet : </h3> 
-
-<h3>Ce qui a été réalisé :</h3>
-
-<h3>Comment utiliser ce projet ? :</h3>
-
-<h3>Informations complémentaires :</h3>
-
-<h3>Lien du dépot Git :</h3>
-<p><a href="https://github.com/Dimeh54/SAE_Appli_Repartie">https://github.com/Dimeh54/SAE_Appli_Repartie</a></p>
+<div id="content" style="min-height: 100vh; padding: 2em;">
+    <h1 id="title-cr" style="font-weight: 600;">Compte-rendu de la SAE</h1>
+    <hr/>
+    <div>
+        <h3 style="font-weight:500;"> Architecture du projet </h3> 
+            <img src="../Ressources/schema_rapport.png" alt="Architecture du projet" style="width:90%">
+    </div>
+    <hr/>
+    <div>
+        <h3 style="font-weight:500;">Ce qui a été réalisé</h3>
+        <p>Serveur central proxy :</p>
+        <p style="padding-left: 2em; text-align: justify;">Nous avons développé un serveur central qui permet de récupérer des données bloquées ou stockées dans une base de données. Il propose une API accessible sur le réseau pour fournir ces données aux clients.</p>
+        <p>Services RMI : </p>
+        <p style="padding-left: 2em; text-align: justify;">Les services RMI sont utilisés par le serveur central pour interagir avec d'autres composants du système. Ils permettent d'utiliser des fonctionnalités qui ne sont pas accessibles via des requêtes classiques, facilitant ainsi la récupération de données spécifiques.</p>
+        <p>Site web : </p>
+        <p style="padding-left: 2em; text-align: justify;" >Nous avons créé un site web comprenant quatre pages principales : Accueil, Carte, Réservation et À propos. L'accueil présente une image et le nom du projet. La page Carte affiche une carte interactive utilisant les informations récupérées, avec des filtres pour permettre aux utilisateurs de sélectionner ce qu'ils souhaitent afficher. La page Réservation contient un formulaire permettant de réserver dans un restaurant, avec une fonctionnalité d'autocomplétion pour faciliter la saisie du nom du restaurant. La page À propos est celle que vous lisez actuellement et contient notre rapport détaillé.</p>
+    </div>
+    <br/>
+    <hr/>
+    <br/>
+    <div> 
+        <h3 style="font-weight:500;">Comment utiliser ce projet ?</h3>
+            <p>Pour utiliser notre projet, vous aurez besoin des informations suivantes :</p>
+            <ul>
+                <li>Adresse IP du serveur central proxy</li>
+                <li>URL pour accéder à l'API fournie par le serveur central</li>
+                <li>Ces informations sont essentielles pour utiliser toutes les fonctionnalités de notre projet.</li>
+            </ul>
+    </div>
+    <br/>
+    <hr/>
+    <br/>
+    <div>
+        <h3 style="font-weight:500;">Informations complémentaires</h3>
+        <p>Nous avons utilisé les technologies suivantes pour réaliser ce projet :</p>
+        <ul>
+            <li>W3.CSS pour le design du site web</li>
+            <li>Leaflet pour la carte interactive</li>
+        </ul>
+        <p>N'hésitez pas à consulter notre démonstration pour une utilisation pratique et à nous contacter si vous avez des questions supplémentaires.</p>
+    </div>
+    <br/>
+    <hr/>
+    <br/>
+    <div>
+        <h3 style="font-weight:500;">Lien du dépot Git :</h3>
+        <p><a href="https://github.com/Dimeh54/SAE_Appli_Repartie">https://github.com/Dimeh54/SAE_Appli_Repartie</a></p>
+    </div>
 </div>
 
 <footer class="w3-bar w3-black w3-center">
