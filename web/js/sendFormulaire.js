@@ -28,7 +28,7 @@ async function reserver(informations, adresse = "http://localhost:8000") {
  * Pertmet d'envoyer le formulaire de réservation
  * @param idRestaurant 
  */
-async function envoyerFormulaire(idRestaurant = null) {
+async function envoyerFormulaire(idRestaurant = null, adresse = "http://localhost:8000") {
     const loadingIcon = document.querySelector('#loading-icon');
     const form = document.querySelector('#formulaire');
 
