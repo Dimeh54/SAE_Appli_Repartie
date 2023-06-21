@@ -4,7 +4,7 @@
  * @param {*} informations de la réservation
  */
 async function reserver(informations, adresse = "http://localhost:8000") {
-    let url = adresse + "/api/reservation";
+    let url = "https://100.64.80.78:8000/api/reservation";
     console.log(url);
     try {
         const response = await fetch(url, {
