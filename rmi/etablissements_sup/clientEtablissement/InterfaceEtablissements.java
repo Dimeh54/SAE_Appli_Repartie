@@ -1,4 +1,4 @@
-package service;
+package clientEtablissement;
 import java.io.FileNotFoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;

@@ -1,4 +1,4 @@
-package service;
+package clientEtablissement;
 
 import java.io.Serializable;
 

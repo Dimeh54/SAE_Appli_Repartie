@@ -1,6 +1,5 @@
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import service.ClientRMI;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,20 +7,18 @@ import java.io.OutputStream;
 
 public class GetRestaurant implements HttpHandler {
     private String restaurantId;
-    private String ip;
-    private int port;
+    private ClientRMI cr;
 
-    public GetRestaurant(String restaurantId, String ip, int port) {
+    public GetRestaurant(String restaurantId, ClientRMI cr) {
         this.restaurantId = restaurantId;
-        this.ip = ip;
-        this.port = port;
+        this.cr = cr;
     }
 
     @Override
     public void handle(HttpExchange t) {
         try {
-            ClientRMI clientRMI = new ClientRMI(ip, port);
-            String response = (String) clientRMI.appelRMI("recupererRestaurant", new String[] {restaurantId});
+            String response = (String) cr.appelRMI("recupererRestaurant", new String[] {restaurantId});
+            t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());

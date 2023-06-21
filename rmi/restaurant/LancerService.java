@@ -1,5 +1,4 @@
-package service;
-
+import java.rmi.NotBoundException;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.AccessException;
@@ -54,23 +53,29 @@ public class LancerService {
             }
 
             // On enregistre le service dans l'annuaire
-            reg.rebind("serviceRestaurant", rd);
+            InterfaceClientRMI icr = (InterfaceClientRMI) reg.lookup("clientRMI");
+            icr.enregistrerService(rd, "service");
             if (DEBUG){
                 System.out.println("service enregistré");
             }
 
         // On gère les exceptions
         } catch (NumberFormatException e) {
-            System.out.println("Le port spécifié n'est pas un entier");
+            System.out.println("erreur : le port spécifié n'est pas un entier");
+            System.exit(1);
         } catch (ExportException e){
-            System.out.println("Le port pour l’export de l’objet est déjà utilisé");
+            System.out.println("erreur : le port pour l’export de l’objet est déjà utilisé");
+            System.exit(1);
         } catch (ConnectException e) {
-            System.out.println("L’annuaire rmiregistry est introuvable");
-            //e.printStackTrace();
+            System.out.println("erreur : l’annuaire rmiregistry est introuvable");
+            System.exit(1);
         } catch (AccessException e) {
             System.out.println("erreur : accès interdit");
             System.exit(1);
         } catch (RemoteException e) {
+            System.out.println("erreur : connexion au serveur impossible");
+            System.exit(1);
+        } catch (NotBoundException e) {
             e.printStackTrace();
         }
     }    
