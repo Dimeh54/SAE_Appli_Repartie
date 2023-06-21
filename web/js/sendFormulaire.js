@@ -26,7 +26,7 @@ async function reserver(informations, adresse = "http://localhost:8000") {
     fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
         body: JSON.stringify(informations),
       })

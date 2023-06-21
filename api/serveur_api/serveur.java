@@ -130,7 +130,5 @@ public class serveur {
         server.start();
         // on affiche un message de lancement du serveur
         System.out.println("Serveur Http démarré sur le port 8000");
-
-
     }
 }
