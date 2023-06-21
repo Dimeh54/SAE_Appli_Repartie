@@ -3,6 +3,7 @@ import traffic from "./module/traffic.js";
 import restaurant from "./module/restaurant.js";
 import institut from "./module/institut.js";
 import loader from "./module/loader.js";
+import sendFormulaire from "./sendFormulaire.js";
 
 var map;
 var adresse;
@@ -22,7 +23,7 @@ async function init() {
     let layerVelib = velib.displayOnMap(map, stations_velib);
 
     // On crée le tableau des stations de traffic et on les affiche sur la carte
-    let traffic_tab = await traffic.creerTabTraffic(adresse);
+    let traffic_tab = await traffic.creerTabTraffic();
     let layerTraffic = traffic.displayOnMap(map, traffic_tab);
 
     // On crée le tableau des restaurants et on les affiche sur la carte
@@ -30,7 +31,7 @@ async function init() {
     let layerRestaurant = restaurant.displayOnMap(map, tab_restaurant);
 
     // On crée le tableau des instituts et on les affiche sur la carte
-    let tab_institut = await institut.creerTabInstitut();
+    let tab_institut = await institut.creerTabInstitut(adresse);
     let layerInstitut = institut.displayOnMap(map, tab_institut);
     
     let overlayMaps = {

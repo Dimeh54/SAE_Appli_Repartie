@@ -25,7 +25,7 @@ async function load_ressource(url, fichierSecours = null) {
 /**
  * Permet de charger le fichier de configuration
  */
-function loadConfig(callback) {
+async function loadConfig(callback) {
     var xhr = new XMLHttpRequest();
     xhr.overrideMimeType("application/json");
     xhr.open("GET", "../config.json", true);

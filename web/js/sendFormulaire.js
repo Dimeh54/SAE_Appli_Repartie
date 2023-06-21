@@ -3,8 +3,8 @@
  * Envoie une requête POST au serveur proxy
  * @param {*} informations de la réservation
  */
-async function reserver(informations) {
-    let url = "https://localhost:8000/api/reservation";
+async function reserver(informations, adresse = "http://localhost:8000") {
+    let url = adresse + "/api/reservation";
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -51,7 +51,7 @@ async function envoyerFormulaire(idRestaurant = null) {
     console.log(informations);
 
     // Envoyer les informations au serveur
-    let response = await reserver(informations);
+    let response = await reserver(informations, adresse);
     
     // Afficher un message de confirmation
     loadingIcon.style.display = 'none';

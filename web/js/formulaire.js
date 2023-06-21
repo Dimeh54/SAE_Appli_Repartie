@@ -5,9 +5,12 @@ import sendFormulaire from "./sendFormulaire.js";
 window.addEventListener("load", init);
 
 let id_restaurant = null;
+var adresse;
 
 async function init() {
-    let tab_restaurant = await getRestaurant();
+    let config = await loader.load_ressource("../config.json");
+    adresse = config.adresse;
+    let tab_restaurant = await getRestaurant(adresse);
     ajouterRestaurant(tab_restaurant);
     ajouterEvent();
 }
@@ -28,9 +31,11 @@ function ajouterRestaurant(tab_restaurant) {
 /**
  * Récupère le tableau des restaurants
  */
-async function getRestaurant() {
-    let url = "../Ressources/restaurants.json";
-    let restaurants = await loader.load_ressource(url);
+async function getRestaurant(adresse) {
+    let urlSecours = "../Ressources/restaurants.json";
+    let url = adresse + "/api/restaurants";
+    let restaurants = await loader.load_ressource(url, urlSecours);
+
     return restaurants.restaurants;
 }
 
@@ -85,10 +90,10 @@ function ajouterEvent() {
         }
     });
 
-    //Envoie le formulaire
-    const form = document.querySelector('#formulaire');
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Empêche la soumission du formulaire
-        await sendFormulaire.envoyerFormulaire(id_restaurant);
-    });
+     //Envoie le formulaire
+     const form = document.querySelector('#formulaire');
+     form.addEventListener('submit', async function(event) {
+         event.preventDefault(); // Empêche la soumission du formulaire
+         await sendFormulaire.envoyerFormulaire(id_restaurant, adresse);
+     });
 }
