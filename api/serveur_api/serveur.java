@@ -3,8 +3,6 @@ import com.sun.net.httpserver.HttpsConfigurator;
 import com.sun.net.httpserver.HttpsParameters;
 import com.sun.net.httpserver.HttpsServer;
 import org.json.JSONObject;
-import service.ClientRMI;
-import service.InterfaceClientRMI;
 
 import javax.net.ssl.*;
 import java.io.BufferedReader;

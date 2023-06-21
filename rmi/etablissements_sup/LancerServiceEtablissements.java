@@ -1,5 +1,3 @@
-package service;
-
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
 import java.rmi.NotBoundException;

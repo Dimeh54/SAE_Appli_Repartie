@@ -1,5 +1,3 @@
-package service;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,8 +11,8 @@ import java.rmi.server.ServerNotActiveException;
 
 
 public class ServiceEtablissements implements InterfaceEtablissements {
-    public service.ReponseEtablissement recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
-        service.ReponseEtablissement resultat = null;
+    public ReponseEtablissement recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
+        ReponseEtablissement resultat = null;
 
 
         //new ServiceEtablissements().recupererEtablissements();

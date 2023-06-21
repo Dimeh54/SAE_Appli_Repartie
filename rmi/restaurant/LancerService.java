@@ -1,5 +1,3 @@
-package service;
-
 import java.rmi.NotBoundException;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
