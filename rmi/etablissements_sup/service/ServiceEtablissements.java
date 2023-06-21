@@ -11,12 +11,10 @@ import java.net.http.HttpResponse;
 import java.rmi.RemoteException;
 import java.rmi.server.ServerNotActiveException;
 
-import static java.lang.System.exit;
-
 
 public class ServiceEtablissements implements InterfaceEtablissements {
-    public ReponseEtablissement recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
-        ReponseEtablissement resultat = null;
+    public service.ReponseEtablissement recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
+        service.ReponseEtablissement resultat = null;
 
 
         //new ServiceEtablissements().recupererEtablissements();
@@ -33,10 +31,10 @@ public class ServiceEtablissements implements InterfaceEtablissements {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .build();
-        /*HttpClient httpClient = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();*/
+//        HttpClient httpClient = HttpClient.newBuilder().build();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create(url))
+//                .build();
 
         try {
 
@@ -47,11 +45,10 @@ public class ServiceEtablissements implements InterfaceEtablissements {
             String responseBody = response.body();
 
             resultat = new ReponseEtablissement(statusCode, contentType, responseBody);
-            //System.out.println(resultat);
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            exit(1);
+            System.exit(1);
         }
         return resultat;
     }

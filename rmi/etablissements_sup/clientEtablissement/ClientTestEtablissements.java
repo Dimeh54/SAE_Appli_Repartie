@@ -1,7 +1,4 @@
-package client;
-
-import service.InterfaceEtablissements;
-import service.ReponseEtablissement;
+package clientEtablissement;
 
 import java.io.FileNotFoundException;
 import java.rmi.ConnectException;

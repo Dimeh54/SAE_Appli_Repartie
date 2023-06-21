@@ -1,6 +1,5 @@
-package client;
+package clientRestaurant;
 
-import service.InterfaceRestaurant;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.RemoteException;
@@ -35,7 +34,7 @@ public class Appel {
             }
 
             // On récupère le service distant
-            InterfaceRestaurant ir = (InterfaceRestaurant) reg.lookup("serviceRestaurant");
+            InterfaceRestaurant ir = (InterfaceRestaurant) reg.lookup("service");
             
             // On appelle la méthode distante
 //            System.out.println(ir.recupererRestaurants());
@@ -46,16 +45,19 @@ public class Appel {
         // On gère les exceptions
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Une IP ou un hôte doit être spécifié en argument");
+            System.exit(1);
         } catch (NotBoundException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
             System.out.println("Le service distant appelé est introuvable");
+            System.exit(1);
         } catch (UnknownHostException e) {
             System.out.println("Serveur inexistant ou introuvable");
+            System.exit(1);
         } catch (ConnectException e) {
             System.out.println("Impossible de se connecter à l’annuaire rmiregistry distant");
+            System.exit(1);
         } catch (RemoteException e) {
             System.out.println("Impossible de se connecter au serveur distant");
+            System.exit(1);
         }
     }
 }
