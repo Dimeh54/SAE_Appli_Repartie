@@ -56,7 +56,7 @@ async function creerTabInstitut(adresse) {
                 "postal":f.code_postal_uai,
                 "latitude":institut.geometry.coordinates[1],
                 "longitude":institut.geometry.coordinates[0],
-                "nom":f.uo_lib,
+                "nom":f.implantation_lib,
             });
         }
     }
