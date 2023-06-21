@@ -19,6 +19,7 @@ public class GetRestaurant implements HttpHandler {
     public void handle(HttpExchange t) {
         try {
             String response = (String) cr.appelRMI("recupererRestaurant", new String[] {restaurantId});
+            t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
