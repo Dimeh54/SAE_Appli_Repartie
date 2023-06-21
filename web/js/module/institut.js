@@ -37,12 +37,12 @@ function displayOnMap(map, tab_institut) {
  * Créer un tab d'objet qui contiennent les infos dont on a besoin
  * @return tableau d'objets avec les infos des instituts supérieurs
  */
-async function creerTabInstitut() {
-    //let url_institut = "https://proxy";
-    let url_institut = "../Ressources/etablissements.json";
+async function creerTabInstitut(adresse) {
+    let url_institut = adresse + "/api/instituts";
+    let urlSecours = "../Ressources/etablissements.json";
 
     // On fait un appel aux infos des instituts supérieurs
-    let instituts = await loader.load_ressource(url_institut);
+    let instituts = await loader.load_ressource(url_institut, urlSecours);
     //let tab_institut = instituts.instituts;
     let tab_institut = [];
     for (let institut of instituts) {

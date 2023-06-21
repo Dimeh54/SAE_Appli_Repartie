@@ -39,11 +39,12 @@ function displayOnMap(map, tab_restaurant) {
  * Créer un tab d'objet qui contiennent les infos dont on a besoin
  * @return tableau d'objets avec les infos des restaurants
  */
-async function creerTabRestaurant() {
+async function creerTabRestaurant(adresse = "") {
     // On fait un appel aux infos des restaurants
-    //let url = "../Ressources/restaurants.json";
-    let url = "https://127.0.0.1:8000/api/restaurants";
-    let restaurants = await loader.load_ressource(url);
+    let fichierSecours = "../Ressources/restaurants.json";
+    let url = adresse + "/api/restaurants";
+    let restaurants = await loader.load_ressource(url, fichierSecours);
+    console.log(restaurants);
     let tab_restaurant = restaurants.restaurants;
 
     return tab_restaurant;
