@@ -5,6 +5,7 @@
  */
 async function reserver(informations, adresse = "http://localhost:8000") {
     let url = adresse + "/api/reservation";
+    console.log(url);
     try {
         const response = await fetch(url, {
             method: "POST",

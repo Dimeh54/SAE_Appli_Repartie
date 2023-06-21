@@ -45,7 +45,8 @@ async function creerTabInstitut(adresse) {
     let instituts = await loader.load_ressource(url_institut, urlSecours);
     //let tab_institut = instituts.instituts;
     let tab_institut = [];
-    for (let institut of instituts) {
+    console.log(instituts);
+    for (let institut of instituts.records) {
         let f = institut.fields;
         
         // on vérifie si l'institut a une propriété type
