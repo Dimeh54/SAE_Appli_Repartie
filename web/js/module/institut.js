@@ -38,7 +38,7 @@ function displayOnMap(map, tab_institut) {
  * @return tableau d'objets avec les infos des instituts supérieurs
  */
 async function creerTabInstitut(adresse) {
-    let url_institut = adresse + "/api/instituts";
+    let url_institut = adresse + "/api/etalissements";
     let urlSecours = "../Ressources/etablissements.json";
 
     // On fait un appel aux infos des instituts supérieurs
