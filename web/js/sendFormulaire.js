@@ -80,7 +80,7 @@ async function envoyerFormulaire(idRestaurant = null, adresse = "http://localhos
     // Afficher un message de confirmation
     loadingIcon.style.display = 'none';
     let message = document.querySelector('#response');
-    if (response) {
+    if (response.ok) {
         message.innerHTML = "Votre réservation a bien été prise en compte !";
         message.style.display = 'block';
     }
